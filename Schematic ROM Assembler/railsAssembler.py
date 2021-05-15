@@ -5,7 +5,7 @@ import numpy as np
 from nbtlib import File
 from nbtlib.tag import *
 
-_height = 15
+_height = 19
 _length = 17
 _width = 35
 
@@ -162,7 +162,7 @@ for x in range(0, 256, 2):
     rI += 1
 
 # create blockarray
-vertIgnore = [1, 3, 5, 7, 9, 11, 13]
+vertIgnore = [0, 1, 2, 3, 5, 7, 9, 11, 13, 15, 17]
 lengthIgnore = [8]
 widthIgnore = [8, 17, 26]
 observerDown = [0, 2, 4, 6]
