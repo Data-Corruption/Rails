@@ -4,15 +4,15 @@
 
 bool ALU::carryFlag = false;
 
-uint8_t ALU::add(int a, int b) {
+int ALU::add(int a, int b) {
 	return vecToInt(binAdder(intToVector(a), intToVector(b), 0));
 }
 
-uint8_t ALU::addc(int a, int b) {
+int ALU::addc(int a, int b) {
 	return vecToInt(binAdder(intToVector(a), intToVector(b), carryFlag));
 }
 
-uint8_t ALU::sub(int a, int b) {
+int ALU::sub(int a, int b) {
 	std::vector<bool> _b = intToVector(b);
 	for (auto b : _b) {
 		b = !b;
@@ -20,7 +20,7 @@ uint8_t ALU::sub(int a, int b) {
 	return vecToInt(binAdder(intToVector(a), _b, 1));
 }
 
-uint8_t ALU::swb(int a, int b) {
+int ALU::swb(int a, int b) {
 	std::vector<bool> _b = intToVector(b);
 	for (auto b : _b) {
 		b = !b;
