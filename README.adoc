@@ -1,4 +1,18 @@
-// show off section
+[source,blue]
+----
+    ___       ___       ___       ___       ___
+   /\  \     /\  \     /\  \     /\__\     /\  \
+  /::\  \   /::\  \   _\:\  \   /:/  /    /::\  \
+ /::\:\__\ /::\:\__\ /\/::\__\ /:/__/    /\:\:\__\
+ \;:::/  / \/\::/  / \::/\/__/ \:\  \    \:\:\/__/
+  |:\/__/    /:/  /   \:\__\    \:\__\    \::/  /
+   \|__|     \/__/     \/__/     \/__/     \/__/
+----
+
+// == Running assembly
+// example programs
+// === Emulator
+// === Redstone
 
 == Rails Instruction Set Architecture
 I designed this isa for minimal implementation complexity while still being practically capable of general computation. There are 16 instructions plus 3 pseudo instructions. Each instruction is 16 bits and there are 2 encoding formats. The instruction set was heavily inspired by https://user.eng.umd.edu/~blj/RiSC/[RISC 16], developed by Peter Chen at the University of Michigan.
@@ -12,11 +26,13 @@ I designed this isa for minimal implementation complexity while still being prac
 
 === Instruction Descriptions
 .syntax legend
+[cols="~,90"]
 |====
 |*X |This is a pointer, meaning you are using the contents of the register as an address. That could be either an address for ram or the program counter. For example if 23 is in register 2 and you jump to register 2, the pc will be set to 23. If you LD from register 2 then ram address 23 will be stored in C.
 |rX |This is an abbreviation for “register”, so r15 is just short for “register 15”.
 |====
 .Instructions
+[cols="~,~,~,~"]
 |====
 |*Name* |*OP Code* |*Encoding Type* |*Description*
 |ADD |0000|3 Operand|A + B = C
@@ -37,13 +53,17 @@ I designed this isa for minimal implementation complexity while still being prac
 |OUT |1111|3 Operand|Stores B in i/o port A.
 |====
 .Pseudo Instructions
+[cols="~,80"]
 |====
-|NOP |This operation does nothing and is replaced by ADD r0, r0, r0
-|MOV |This moves data from one register to another. It is replaced by ADD source, r0, destination
-|EXIT |This stops the program's execution and resets the program counter. It is replaced by JMPL r0, r0. This should put the cpu in a state where it's ready to be started again.
+|NOP       |This operation does nothing and is replaced by ADD r0, r0, r0
+|MOV rX rY |This copies data from one register to another. It is replaced by ADD rX, r0, rY
+|JMP x     |This jumps to x. It is replaced by BEQ x r15
+|EXIT     a|This stops the program's execution and resets the program counter. It is replaced +
+by JMPL r0, r0. This should put the cpu in a state where it's ready to be started again.
 |====
 
 === Memory
+[cols="~,80"]
 |====
 |Register File a|The register file is 16 bytes of dual read registers.
 
@@ -53,8 +73,3 @@ I designed this isa for minimal implementation complexity while still being prac
 |Data Storage |Data storage is 256 bytes of RAM.
 |Instruction Storage |Instructions are stored in 512 bytes of ROM, since instructions are 16 bit that means you have a max of 256 instructions.
 |====
-
-// == Running assembly
-// example programs
-// === Emulator
-// === Redstone
