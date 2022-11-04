@@ -41,11 +41,11 @@ I designed this isa for minimal implementation complexity while still being prac
 |SWB |0011|3 Operand|A - B - (previous operation carry out) = C
 |NAND|0100|3 Operand|A NAND B = C
 |RSFT|0101|3 Operand|Logical right shift A, stores in C.
-|LIMM|0110|Immediate|Stores Immediate in C.
+|IMM|0110|Immediate|Stores Immediate in C.
 |LD  |0111|3 Operand|Loads data from ram address *A and stores at C.
 |LDIM|1000|Immediate|Loads data from ram address IMM and stores at C.
 |ST  |1001|3 Operand|Stores B in ram address *A.
-|STIM|1010|Immediate|Stores B in ram address IMM.
+|STIM|1010|Immediate|Stores C in ram address IMM.
 |BEQ |1011|Immediate|Branch to IMM if r15 and C are equal.
 |BGT |1100|Immediate|Branch to IMM if r15 is greater than C.
 |JMPL|1101|3 Operand|Jumps to *A and stores the current instruction address + 1 in C.
